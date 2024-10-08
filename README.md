@@ -2,8 +2,6 @@
 
 # 🗳️ Blockchain-based Decentralised Voting Comm (Demonstration)
 
-> **🏆 This project won 1st place in the National Level Hackathon Infothon 3.0 for the Social Innovation category.**
-
 ---
 
 ## 🎯 Project Overview
