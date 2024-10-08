@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vote Submission</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: blueviolet;
+            /* Sky blue */
+            position: relative;
+        }
+
+        .logo {
+
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 20px;
+            border-radius: 50%;
+
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background-color: #006994;
+            /* Active state */
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4682b4;
+            color: #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #315f72;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        /* Content styles */
+        .content {
+            padding: 20px;
+        }
+
+        /* Blockchain info styles */
+        .blockchain-info {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: aqua;
+            /* Light blue background */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Modern registration form styles */
+        .registration-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background-color: aqua;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding-LEFT: 10PX;
+        }
+
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border 0.3s;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            border-color: #00796b;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ffffff;
+            padding: 0 5px;
+            font-size: 12px;
+            color: #888;
+            transition: 0.2s;
+            pointer-events: none;
+        }
+
+        .input-group input:focus+label,
+        .input-group input:not(:placeholder-shown)+label {
+            top: -10px;
+            font-size: 10px;
+            color: #00796b;
+        }
+
+        .btn {
+            padding: 12px;
+            background-color: #00796b;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #004d40;
+            transform: translateY(-2px);
+        }
+
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #87ceeb;
+                width: 200px;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+
+        /* Footer styling */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer .social-media {
+            margin: 10px 0;
+        }
+
+        .footer .social-media a {
+            margin: 0 10px;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .footer .social-media a:hover {
+            color: #007bff;
+        }
+
+        .footer .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer .footer-links a {
+            margin: 0 10px;
+        }
+
+        /* Center the form */
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style the options */
+        .option {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+
+
+        <div class="logo">Blockchain Voting System</div>
+
+        <ul class="nav-links">
+            <li><a href="#" class="nav-item" onclick="setActive(this)">Home</a></li>
+            <li><a href="#" class="nav-item" onclick="setActive(this)">Login</a></li>
+            <li><a href="#" class="nav-item" onclick="setActive(this)">Voting Rules</a></li>
+            <li><a href="voting.html" class="nav-item" onclick="setActive(this)">Election Dates</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Type here..." id="search-input">
+            <button onclick="searchFunction()">Search</button>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+    <div class="form-container">
+
+
+        <!-- <form action="m.html" method="get" </form> -->
+        <h2>Cast Your Vote</h2>
+        <div class="option">
+            <img src="bjp.jpg" alt="BJP">
+            <input type="radio" name="party" value="bjp"> BJP
+        </div>
+        <div class="option">
+            <img src="CON.png" alt="Congress">
+            <input type="radio" name="party" value="congress"> Congress
+        </div>
+        <div class="option">
+            <img src="s.png" alt="Shiv Sena">
+            <input type="radio" name="party" value="shivsena"> Shiv Sena
+        </div>
+        <br>
+        <a href = "thanks.html"><input type="submit" value="Submit"></a>
+        </form>
+
+        <div id="message" style="display: none;">Form is submitted!</div>
+        <script>
+            // Listen for form submission
+            document.getElementById('vote-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                const selectedCandidate = document.getElementById('candidate').value;
+
+                if (selectedCandidate) {
+                    // Add the vote to the history
+                    addVoteToHistory(selectedCandidate);
+
+                    // Optionally, you can show a success message or redirect the user
+                    alert('You voted for ${selectedCandidate}');
+
+                    // Clear the form
+                    this.reset();
+                }
+            });
+
+        </script>
+
+
+</body>
+
+</html>

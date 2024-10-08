@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decentralized Community - Main Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+</head>
+<body>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 15px;
+            transition: width 0.3s;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background: #555;
+            border-radius: 5px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .election-info {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .button {
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            display: inline-block;
+            transition: background 0.3s, transform 0.3s;
+            margin: 20px 0;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .button {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="vote.html">Cast Vote</a></li>
+                <li><a href="voting-history.html">Vote History</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <div>
+                    <h1>Urban Ledger </h1>
+                    <p>Your Voice Matters!</p>
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span>Welcome, User</span>
+                </div>
+            </header>
+
+            <div class="election-info">
+                <h2>Welcome to the Decentralized Community</h2>
+                <p>Welcome to the Blockchain-Based System project! This repository is part of the Winter of
+                    Blockchain 2024 open-source initiative, aimed at creating a secure and transparent voting system
+                    leveraging blockchain technology.</p>
+            </div>
+
+            <a href="vote.html">
+                <div class="button">
+                    Cast Your Vote Here
+                </div>
+            </a>
+
+            <footer>
+                <p>&copy; 2024 Decentralized Voting System</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

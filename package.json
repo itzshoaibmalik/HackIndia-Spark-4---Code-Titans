@@ -1,0 +1,21 @@
+{
+  "name": "urbanledger",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
+    "ethers": "^6.13.3",
+    "ganache": "^7.9.2",
+    "ganache-cli": "^6.12.2",
+    "hardhat": "^0.0.7",
+    "truffle": "^5.8.2",
+    "web3": "^4.13.0"
+  }
+}

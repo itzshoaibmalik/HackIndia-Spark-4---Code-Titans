@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+    <script src="https://unpkg.com/@walletconnect/client@1.6.6/dist/umd/index.min.js"></script>
+    <script src="https://unpkg.com/@walletconnect/qrcode-modal/dist/umd/index.min.js"></script>
+   
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="logo">
+        <img src="https://imgs.search.brave.com/62Z1TSat5SvApOzIJ_5ggERf0ji3eZ_h-WhyE19DwsQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAyLzMzLzIwLzE1/LzM2MF9GXzIzMzIw/MTU4OF9UZU9SYlFt/eHVNQ1RFbXBscWt2/U3dCWDd0bnZ1bEU3/NS5qcGc" alt="spotify logo">
+    </div>
+    <div class="box">
+        <h1>Urban Ledger</h1>
+        <br><span class="sub-text">For the People, To the People, By The People</span>
+        <label>
+            <strong>Email address</strong>
+            <br>
+            <input type="text" placeholder="name@domain.com" class="input-box">
+        </label>
+        <br>
+
+        <div>
+            <a href="" class="ph-number">Use phone number instead</a>
+        </div>
+        <div>
+            <a href="landing_page.html">
+                <button class="next">Next</button>
+            </a>
+        </div>
+    </div>
+    <div class="signup-box" id="metamask-button">
+        <span><i class="fab fa-ethereum"></i>&nbsp;&nbsp;&nbsp;Signup with Meta Mask</span>
+    </div>
+
+    <!-- <div class="signup-box" id="walletconnect-button">
+        <span><i class="fab fa-wallet"></i>&nbsp;&nbsp;&nbsp;Signup with Wallet Connect</span>
+    </div> -->
+
+    <footer class="footer">
+        <div class="spotifyContain">
+            <p>Already have an account? <a href="login.html">Log in here</a></p>
+            <p>This site is protected by reCAPTCHA and the Google <br><a
+                    href="https://policies.google.com/privacy">Privacy Policy</a> and <a
+                    href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+        </div>
+    </footer>
+    <footer class="footer-1">
+        <div class="social-icons">
+            <a href="#" class="icon facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="icon twitter" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="icon instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="icon github" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+        <p>&copy; 2024 Urban Ledger. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const metamaskSignupButton = document.getElementById("metamask-button");
+            const walletConnectSignupButton = document.getElementById("walletconnect-button");
+
+            // Function to check if MetaMask is installed
+            function checkMetaMask() {
+                return typeof window.ethereum !== 'undefined';
+            }
+
+            // Function to handle MetaMask login
+            async function loginWithMetaMask() {
+                if (!checkMetaMask()) {
+                    alert("Please install MetaMask to use this feature.");
+                    return;
+                }
+
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const userAccount = accounts[0];
+                    console.log("Logged in with MetaMask account:", userAccount);
+                    alert(`Logged in as ${userAccount}`);
+                } catch (error) {
+                    console.error("MetaMask connection error:", error);
+                    alert("Failed to connect to MetaMask.");
+                }
+            }
+
+            // Function to handle WalletConnect login
+            async function loginWithWalletConnect() {
+                const connector = new WalletConnect({
+                    bridge: "https://bridge.walletconnect.org", // Bridge server
+                    qrcodeModal: WalletConnectQRCodeModal, // Use WalletConnectQRCodeModal for QR code
+                });
+
+                // Check if already connected
+                if (!connector.connected) {
+                    // Create a new session
+                    await connector.createSession();
+                }
+
+                // Subscribe to connection events
+                connector.on("connect", (error, payload) => {
+                    if (error) {
+                        console.error("Connection error:", error);
+                        return;
+                    }
+
+                    // Get provided accounts
+                    const { accounts } = payload.params[0];
+                    console.log("Logged in with WalletConnect account:", accounts[0]);
+                    alert(`Logged in as ${accounts[0]}`);
+                });
+
+                // Subscribe to disconnection events
+                connector.on("disconnect", (error) => {
+                    if (error) {
+                        console.error("Disconnection error:", error);
+                        return;
+                    }
+                    console.log("Disconnected");
+                });
+
+                // Open QR Code modal
+                const uri = connector.uri;
+                WalletConnectQRCodeModal.open(uri, () => {
+                    console.log("QR Code Modal closed");
+                });
+            }
+
+            // Event listener for MetaMask button
+            metamaskSignupButton.addEventListener("click", loginWithMetaMask);
+
+            // Event listener for WalletConnect button
+            walletConnectSignupButton.addEventListener("click", loginWithWalletConnect);
+        });
+    </script>
+</body>
+
+</html>
